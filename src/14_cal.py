@@ -30,3 +30,48 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+now = datetime.now()
+year = now.year
+month = now.month
+returned_cal = []
+
+## --> A better way of accomplishing the same thing without having to use sys <-- ##
+# inputDate = input("Enter Date --- Example: 2,12 ").split(',')
+# # No Input
+# if len(inputDate[0]) == 0:
+#   print(" 😔 No values Given 😔")
+#   print((calendar.month_name[month], year))
+#   monthMatrix = calendar.monthcalendar(year, month)
+#   for weeks in monthMatrix:
+#     print(weeks)
+# # One Input ( No year )
+# elif len(inputDate) == 1:
+#   print('{}, {}'.format(calendar.month_name[int(inputDate[0])], year))
+#   monthMatrix = calendar.monthcalendar(year, int(inputDate[0]))
+#   for weeks in monthMatrix:
+#     print(weeks)
+# # Two inputs(Month & Year)
+# elif len(inputDate) == 2:
+#   print('{}, {}'.format(calendar.month_name[int(inputDate[0])], int(inputDate[1])))
+#   monthMatrix = calendar.monthcalendar(int(inputDate[1]), int(inputDate[0]))
+#   for weeks in monthMatrix:
+#     print(weeks)
+# # Entered more then 2 digits
+# else:
+#   print("Incorrect Information Added")
+
+if len(sys.argv) > 3:
+    print("Please enter month and date arguments only")
+if len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+elif len(sys.argv) == 2:
+    month = int(sys.argv[1])
+
+cal_values = calendar.monthcalendar(year, month)
+display_month = calendar.month_name[month]
+
+print("{} {}".format(display_month,year ))
+for week in cal_values:
+    print(week)
